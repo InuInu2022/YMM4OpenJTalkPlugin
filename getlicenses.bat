@@ -1,0 +1,1 @@
+dotnet-project-licenses -f .\licenses\ -m -i .\YMM4OpenJTalkPlugin.sln -u -e -c
