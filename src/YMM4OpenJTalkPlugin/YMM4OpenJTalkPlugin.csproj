@@ -5,6 +5,40 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <!-- README -->
+    <Content Include="../../README.md" Exclude="**/.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <!-- LICENSE -->
+    <Content Include="../../LICENSE" Exclude="**/.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Include="../../licenses/**" LinkBase="licenses/" Exclude="**/.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <!-- dic. & voice  -->
+    <Content Include="../../libs/open_jtalk_dic_utf_8-1.11/*" LinkBase="lib/open_jtalk_dic_utf_8-1.11/" Exclude="**/.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Include="../../libs/userdic/*" LinkBase="lib/userdic/"  Exclude="**/.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Include="../../voices/**" LinkBase="lib/voices/"  Exclude="**/.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+
     <ProjectReference Include="..\..\libs\YmmeUtil\src\YmmeUtil.Common\YmmeUtil.Common.csproj" />
     <ProjectReference Include="..\..\libs\YmmeUtil\src\YmmeUtil.Ymm4\YmmeUtil.Ymm4.csproj" />
   </ItemGroup>

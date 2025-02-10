@@ -65,10 +65,19 @@
           <TextBlock Margin="5" TextWrapping="Wrap">Open JTalkは入力された日本語テキストに基づいて自由な音声を生成するHMMテキスト音声合成システムです。</TextBlock>
           <TextBlock Margin="5" TextWrapping="Wrap">Copyright (c) 2008-2018  Nagoya Institute of Technology Department of Computer Science. All rights reserved.</TextBlock>
           <Button x:Name="ShowLicense" Content="License"
-            Command="{Binding OpenGithub}"
+            Command="{Binding OpenLicense}"
             />
           <Button x:Name="GoHomepage" Content="Go to SourceForge page"
-            Command="{Binding OpenGithub}"
+            Command="{Binding OpenSourceForge}"
+            />
+        </StackPanel>
+      </GroupBox>
+      <GroupBox Header="SHABERUについて" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+        <StackPanel>
+          <TextBlock Margin="5" TextWrapping="Wrap">SHABERUはアキヒロさんによる、音声合成システム、Open JTalkをWindowsでも使いやすくするために作成したソフトです。</TextBlock>
+          <TextBlock Margin="5" TextWrapping="Wrap">©2017 Akihiro</TextBlock>
+          <Button x:Name="GoSHABERUHomepage" Content="Go to SHABERU page"
+            Command="{Binding OpenSHABERU}"
             />
         </StackPanel>
       </GroupBox>

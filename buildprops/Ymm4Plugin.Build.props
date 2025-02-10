@@ -28,6 +28,11 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
+    <Content Include="../../lib/open_jtalk_dic_utf_8-1.11/**" LinkBase="lib/">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <!-- exclude -->
     <ExcludeFromPublish Include="**\*.pdb" />
     <ExcludeFromPublish Include="**\*.xml" />
@@ -50,16 +55,17 @@
   </Target>
   <Target Name="CopyDebugDlls" BeforeTargets="AfterBuild" Condition="'$(Configuration)' == 'Debug'">
     <ItemGroup>
-      <CommonPaths Include="$(OutputPath)../../Release/$(TargetFramework)/publish" />
+      <CommonPaths Include="$(OutputPath)../../Debug/$(TargetFramework)/publish" />
       <MissingDlls Include="$(CommonPaths)/*.dll" Exclude="$(CommonPaths)/$(AssemblyName).dll" />
       <MissingPdbs Include="$(CommonPaths)/*.pdb" Exclude="$(CommonPaths)/$(AssemblyName).pdb" />
     </ItemGroup>
-    <Copy SourceFiles="@(MissingDlls)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="@(MissingPdbs)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(MissingDlls)" DestinationFiles="@(MissingDlls->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(MissingPdbs)" DestinationFiles="@(MissingPdbs->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
     <ItemGroup>
       <SourceFiles Include="$(OutputPath)**/*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(YMM4_PATH)\user\plugin\$(AssemblyName)\" />
+    <Copy SourceFiles="@(SourceFiles)" DestinationFiles="@(SourceFiles->'$(YMM4_PATH)\user\plugin\$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
     <Message Text="Dlls @(MissingDlls)" Importance="high" />
     <Message Text="PDBs @(MissingPdbs)" Importance="high" />
   </Target>
