@@ -482,3 +482,11 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+libs/open_jtalk_dic_utf_8-1.11/char.bin
+libs/open_jtalk_dic_utf_8-1.11/left-id.def
+libs/open_jtalk_dic_utf_8-1.11/matrix.bin
+libs/open_jtalk_dic_utf_8-1.11/pos-id.def
+libs/open_jtalk_dic_utf_8-1.11/rewrite.def
+libs/open_jtalk_dic_utf_8-1.11/right-id.def
+libs/open_jtalk_dic_utf_8-1.11/sys.dic
+libs/open_jtalk_dic_utf_8-1.11/unk.dic
