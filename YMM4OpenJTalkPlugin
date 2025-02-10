@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0936A31E-09F1-432A-8463-DA059FCCECA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMM4OpenJTalkPlugin", "src\YMM4OpenJTalkPlugin\YMM4OpenJTalkPlugin.csproj", "{7999BDA4-410F-464F-8571-B65F467F707D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{8CE5FAB8-C55A-4A0B-B08C-E1E0EFB8FB53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YmmeUtil", "YmmeUtil", "{23FC3017-578F-4F27-B0ED-8740B5374D6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AEAB029C-2CE3-4FDA-B59D-2DF52ABDE720}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YmmeUtil.Common", "libs\YmmeUtil\src\YmmeUtil.Common\YmmeUtil.Common.csproj", "{D41922E0-4D31-43FC-9EA4-B36423C9AF00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YmmeUtil.Ymm4", "libs\YmmeUtil\src\YmmeUtil.Ymm4\YmmeUtil.Ymm4.csproj", "{3153A6BF-EFC7-4AEC-9E21-4D62B3E7BF2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7999BDA4-410F-464F-8571-B65F467F707D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7999BDA4-410F-464F-8571-B65F467F707D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7999BDA4-410F-464F-8571-B65F467F707D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7999BDA4-410F-464F-8571-B65F467F707D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D41922E0-4D31-43FC-9EA4-B36423C9AF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D41922E0-4D31-43FC-9EA4-B36423C9AF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D41922E0-4D31-43FC-9EA4-B36423C9AF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D41922E0-4D31-43FC-9EA4-B36423C9AF00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3153A6BF-EFC7-4AEC-9E21-4D62B3E7BF2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3153A6BF-EFC7-4AEC-9E21-4D62B3E7BF2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3153A6BF-EFC7-4AEC-9E21-4D62B3E7BF2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3153A6BF-EFC7-4AEC-9E21-4D62B3E7BF2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7999BDA4-410F-464F-8571-B65F467F707D} = {0936A31E-09F1-432A-8463-DA059FCCECA1}
+		{23FC3017-578F-4F27-B0ED-8740B5374D6B} = {8CE5FAB8-C55A-4A0B-B08C-E1E0EFB8FB53}
+		{AEAB029C-2CE3-4FDA-B59D-2DF52ABDE720} = {23FC3017-578F-4F27-B0ED-8740B5374D6B}
+		{D41922E0-4D31-43FC-9EA4-B36423C9AF00} = {AEAB029C-2CE3-4FDA-B59D-2DF52ABDE720}
+		{3153A6BF-EFC7-4AEC-9E21-4D62B3E7BF2D} = {AEAB029C-2CE3-4FDA-B59D-2DF52ABDE720}
+	EndGlobalSection
+EndGlobal

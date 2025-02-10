@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DC0E96BC-F46C-43B5-BF16-3EE0A8EF4B25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMM4OpenJTalkPlugin", "src\YMM4OpenJTalkPlugin\YMM4OpenJTalkPlugin.csproj", "{8B4F5770-C8CA-49BA-A346-2313213764A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{D68236BA-93FB-4341-B0F5-974A09D826F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YmmeUtil", "YmmeUtil", "{B824D9C6-51E6-4EDF-9ACB-B4D7D315B964}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{81E4A38C-FA83-49D5-9862-199015692791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YmmeUtil.Ymm4", "libs\YmmeUtil\src\YmmeUtil.Ymm4\YmmeUtil.Ymm4.csproj", "{5C0EB935-0E9E-4376-8A7F-3A9C89B4C80C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YmmeUtil.Common", "libs\YmmeUtil\src\YmmeUtil.Common\YmmeUtil.Common.csproj", "{640A7738-41F2-4168-BF3F-6099E4C580D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B4F5770-C8CA-49BA-A346-2313213764A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4F5770-C8CA-49BA-A346-2313213764A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4F5770-C8CA-49BA-A346-2313213764A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4F5770-C8CA-49BA-A346-2313213764A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0EB935-0E9E-4376-8A7F-3A9C89B4C80C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0EB935-0E9E-4376-8A7F-3A9C89B4C80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0EB935-0E9E-4376-8A7F-3A9C89B4C80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0EB935-0E9E-4376-8A7F-3A9C89B4C80C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640A7738-41F2-4168-BF3F-6099E4C580D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640A7738-41F2-4168-BF3F-6099E4C580D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640A7738-41F2-4168-BF3F-6099E4C580D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640A7738-41F2-4168-BF3F-6099E4C580D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B4F5770-C8CA-49BA-A346-2313213764A7} = {DC0E96BC-F46C-43B5-BF16-3EE0A8EF4B25}
+		{B824D9C6-51E6-4EDF-9ACB-B4D7D315B964} = {D68236BA-93FB-4341-B0F5-974A09D826F1}
+		{81E4A38C-FA83-49D5-9862-199015692791} = {B824D9C6-51E6-4EDF-9ACB-B4D7D315B964}
+		{5C0EB935-0E9E-4376-8A7F-3A9C89B4C80C} = {81E4A38C-FA83-49D5-9862-199015692791}
+		{640A7738-41F2-4168-BF3F-6099E4C580D1} = {81E4A38C-FA83-49D5-9862-199015692791}
+	EndGlobalSection
+EndGlobal

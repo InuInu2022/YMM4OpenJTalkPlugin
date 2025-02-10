@@ -1,0 +1,78 @@
+<UserControl x:Class="YMM4OpenJTalkPlugin.View.TalkSettingsView"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:local="clr-namespace:YMM4OpenJTalkPlugin.View"
+       xmlns:viewmodels="clr-namespace:YMM4OpenJTalkPlugin.ViewModel"
+       mc:Ignorable="d"
+       d:DesignHeight="450" d:DesignWidth="800">
+  <ScrollViewer
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    HorizontalScrollBarVisibility="Disabled"
+    VerticalScrollBarVisibility="Auto">
+    <StackPanel>
+      <Expander Header="YMM4 OpenJTalk Plugin" IsExpanded="True">
+        <Grid Margin="10">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+
+          <Label
+            Content="Plugin version"
+            Grid.Row="0" Grid.Column="0"
+            />
+          <TextBox x:Name="PluginVersion"
+            Text="{Binding PluginVersion, Mode=OneWay}"
+            IsReadOnly="True"
+            Grid.Row="0" Grid.Column="1" />
+
+          <Label Content="{Binding UpdateMessage}"
+            IsEnabled="{Binding HasUpdate}"
+            Grid.Row="2" Grid.Column="0" />
+          <Button x:Name="UpdateCheck" Content="Update check"
+            Command="{Binding UpdateCheck}"
+            IsEnabled="{Binding IsUpdateCheckEnabled}"
+            Grid.Row="2" Grid.Column="1" />
+
+          <Button x:Name="Download" Content="Download"
+            Command="{Binding Download}"
+            IsEnabled="{Binding IsDownloadable}"
+            Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
+        </Grid>
+      </Expander>
+      <GroupBox Header="YMM4 OpenJTalk Pluginについて" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+        <StackPanel>
+          <TextBlock Margin="5" TextWrapping="Wrap">Open JTalkに対応した非公式プラグインです。</TextBlock>
+          <TextBlock Margin="5" TextWrapping="Wrap">SHABERUの音響モデルも利用することができます。</TextBlock>
+          <TextBlock Margin="5" TextWrapping="Wrap">このプラグインが原因のエラーはOpen JTalkやYMM4本体の開発者ではなく、いぬいぬ（InuInu2022）にご連絡ください。</TextBlock>
+          <TextBlock Margin="5">Ⓒ InuInu 2024 - </TextBlock>
+          <Button x:Name="GoToGithub" Content="Open Github"
+            Command="{Binding OpenGithub}"
+            />
+        </StackPanel>
+      </GroupBox>
+      <GroupBox Header="Open JTalkについて" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+        <StackPanel>
+          <TextBlock Margin="5" TextWrapping="Wrap">Open JTalkは入力された日本語テキストに基づいて自由な音声を生成するHMMテキスト音声合成システムです。</TextBlock>
+          <TextBlock Margin="5" TextWrapping="Wrap">Copyright (c) 2008-2018  Nagoya Institute of Technology Department of Computer Science. All rights reserved.</TextBlock>
+          <Button x:Name="ShowLicense" Content="License"
+            Command="{Binding OpenGithub}"
+            />
+          <Button x:Name="GoHomepage" Content="Go to SourceForge page"
+            Command="{Binding OpenGithub}"
+            />
+        </StackPanel>
+      </GroupBox>
+    </StackPanel>
+  </ScrollViewer>
+
+</UserControl>
