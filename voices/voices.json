@@ -19,10 +19,39 @@
             "Id": "nitech_jp_atr503_m001",
             "Terms": "https://open-jtalk.sourceforge.net/",
             "FileSize": "",
-            "Author": "HTS Working Group",
+            "Author": "HTS Working Group, Dept. of Computer Science, Nagoya Institute of Technology",
             "ContentId": "",
             "StylePaths": {
                 "normal": "nitech_jp_atr503_m001.htsvoice"
+            }
+        },
+        {
+            "Name": "メイ",
+            "Id": "mei",
+            "Terms": "https://www.mmdagent.jp/",
+            "FileSize": "",
+            "Author": "MMDAgent Project Team, Dept. of Computer Science, Nagoya Institute of Technology",
+            "ContentId": "",
+            "StylePaths": {
+                "normal": "mei_normal.htsvoice",
+                "angry": "mei_angry.htsvoice",
+                "happy": "mei_happy.htsvoice",
+                "sad": "mei_sad.htsvoice",
+                "bashful": "mei_bashful.htsvoice"
+            }
+        },
+        {
+            "Name": "タクミ",
+            "Id": "takumi",
+            "Terms": "https://www.mmdagent.jp/",
+            "FileSize": "",
+            "Author": "MMDAgent Project Team, Dept. of Computer Science, Nagoya Institute of Technology",
+            "ContentId": "",
+            "StylePaths": {
+                "normal": "takumi_normal.htsvoice",
+                "angry": "takumi_angry.htsvoice",
+                "happy": "takumi_happy.htsvoice",
+                "sad": "takumi_sad.htsvoice"
             }
         }
     ]

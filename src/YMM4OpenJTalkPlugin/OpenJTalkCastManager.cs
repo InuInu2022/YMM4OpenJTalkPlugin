@@ -52,7 +52,7 @@ public static class OpenJTalkCastManager
 	{
 		return castData
 			.Select(static v => new KeyValuePair<string, Dictionary<string, double>>(
-				v.Value.Id,
+				v.Value.Name,
 				ToStyleWeights(v)
 			))
 			.ToDictionary();
