@@ -13,8 +13,6 @@ namespace YMM4OpenJTalkPlugin;
 [PluginDetails(AuthorName = "InuInu", ContentId = "")]
 public class OpenJTalkPlugin : IVoicePlugin
 {
-
-
 	public string Name => "YMM4 OpenJTalk プラグイン";
 	public PluginDetailsAttribute Details =>
 		GetType().GetCustomAttribute<PluginDetailsAttribute>() ?? new();
@@ -23,8 +21,8 @@ public class OpenJTalkPlugin : IVoicePlugin
 		=> OpenJTalkSettings
 			.Default
 			.Speakers
-			.Select(v => new OpenJTalkSpeaker(v));
-	public bool CanUpdateVoices { get; }
+			.Select(v => new OpenJTalkSpeaker(v, v));
+	public bool CanUpdateVoices { get; } = true;
 	public bool IsVoicesCached
 		=> OpenJTalkSettings.Default.IsCached;
 
@@ -35,8 +33,11 @@ public class OpenJTalkPlugin : IVoicePlugin
 		);
 	}
 
-	public Task UpdateVoicesAsync()
+	public async Task UpdateVoicesAsync()
 	{
-		throw new NotImplementedException();
+		await OpenJTalkSettings
+			.Default
+			.UpdateSpeakersAsync()
+			.ConfigureAwait(false);
 	}
 }

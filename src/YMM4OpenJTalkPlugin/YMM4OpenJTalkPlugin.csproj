@@ -28,12 +28,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
-    <Content Include="../../libs/userdic/*" LinkBase="lib/userdic/"  Exclude="**/.gitkeep">
+    <Content Include="../../libs/userdic/*" LinkBase="lib/userdic/" Exclude="**/.gitkeep">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
-    <Content Include="../../voices/**" LinkBase="lib/voices/"  Exclude="**/.gitkeep">
+    <Content Include="../../voices/**" LinkBase="lib/voices/" Exclude="**/.gitkeep">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Epoxy.Wpf" Version="1.16.0" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="SharpOpenJTalk" Version="1.4.0" />
   </ItemGroup>
 </Project>

@@ -71,57 +71,41 @@ public partial class OpenJTalkSettings : SettingsBase<OpenJTalkSettings>
 	/// </summary>
 	public async Task UpdateSpeakersAsync()
 	{
-		//if (_service is null) return;
-
-		await UIThread.InvokeAsync(()=>{
+		await UIThread.InvokeAsync(() => {
 			TaskbarUtil.StartIndeterminate();
 			return ValueTask.CompletedTask;
 		}).ConfigureAwait(false);
 
-		//Speakers = await _service
-		//	.GetAvailableCastsAsync()
-		//	.ConfigureAwait(false);
+		//TODO:json
+		Speakers = [
+			"tohoku-f01",
+			"nitech-jp-atr503-m001",
+		];
+		SpeakersStyles = new(StringComparer.Ordinal)
+		{
+			{
+				"tohoku-f01",
+				new(StringComparer.Ordinal){
+					{"neutral", 1.0},
+					{"happy", 0.0},
+					{"angry", 0.0},
+					{"sad", 0.0},
+				}
+			},
+			{
+				"nitech-jp-atr503-m001",
+				new(StringComparer.Ordinal){}
+			},
+		};
 
-		await UIThread.InvokeAsync(()=>{
+		await UIThread.InvokeAsync(() =>
+		{
 			TaskbarUtil.FinishIndeterminate();
 			TaskbarUtil.ShowNormal();
 			return ValueTask.CompletedTask;
 		}).ConfigureAwait(false);
 
-		/*
 
-		double total = Speakers.Length;
-		var index = 1;
-
-		var styleDic = new Dictionary<string, Dictionary<string, double>>(StringComparer.Ordinal);
-		var presetDic = new Dictionary<string, IList<string>>(StringComparer.Ordinal);
-		foreach (var item in Speakers)
-		{
-			if (item is null) continue;
-			await _service.SetCastAsync(item)
-				.ConfigureAwait(false);
-
-			//styles
-			var styles = await _service
-				.GetStylesAsync(item)
-				.ConfigureAwait(false);
-			styleDic.Add(item, styles.ToDictionary());
-
-			//presets
-			var presets = await _service
-				.GetPresetsAsync(item)
-				.ConfigureAwait(false);
-			presetDic.Add(item, [..presets]);
-
-			await UIThread.InvokeAsync(()=>{
-				TaskbarUtil.ShowProgress(index / total);
-				return ValueTask.CompletedTask;
-			}).ConfigureAwait(false);
-			index++;
-		}
-		SpeakersStyles = styleDic;
-		SpeakersPresets = presetDic;
-		*/
 
 		IsCached = true;
 
