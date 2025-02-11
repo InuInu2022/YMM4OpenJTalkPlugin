@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 using YukkuriMovieMaker.Commons;
 using YukkuriMovieMaker.Plugin.Voice;
@@ -18,16 +19,19 @@ namespace YMM4OpenJTalkPlugin;
 /// <param name="contentId"></param>
 public class OpenJTalkResource(
 	string name,
+	string id,
 	IDictionary<string, string> stylePaths,
 	string terms = "",
-	bool isDownloaded = false,
+	bool isDownloaded = true,
 	string? fileSize = null,
 	string author = "",
 	string contentId = ""
 ) : IVoiceResource
 {
 	public string Name { get; init; } = name;
-	public string Terms { get; init; } = terms;
+	public string Id { get; init; } = id;
+ 	public string Terms { get; init; } = terms;
+	[JsonIgnore]
 	public bool IsDownloaded { get; } = isDownloaded;
 	public string? FileSize { get; } = fileSize;
 
@@ -45,6 +49,11 @@ public class OpenJTalkResource(
 
 	public Task<bool> HasUpdateAsync()
 	{
-		throw new NotImplementedException();
+		return new Task<bool>(() => false);
 	}
+}
+
+public record PluginResources
+{
+	public IEnumerable<OpenJTalkResource>? OpenJTalkResources { get; set; }
 }

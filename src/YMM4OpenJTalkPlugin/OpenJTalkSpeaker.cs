@@ -38,17 +38,18 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 	ReadOnlyDictionary<string, double> _styles;
 	IReadOnlyList<string> _presets;
 
-	public OpenJTalkSpeaker(string voiceName, string id)
+	public OpenJTalkSpeaker(string voiceName)
 	{
 		SpeakerName = $"{voiceName}";
-		ID = $"YMM4OpenJTalk_{id}";
-		var castData = OpenJTalkCastManager.GetCastData(id);
+		var castData = OpenJTalkCastManager.GetCastData(voiceName);
+		ID = $"{castData.Id}";
+		//Resource = castData;
 		SpeakerAuthor = castData.Author;
 		SpeakerContentId = castData.ContentId;
 		License = new OpenJTalkVoiceLicense(
-			castData.TermUrl
+			castData.Terms
 		);
-		_voiceName = id;
+		_voiceName = voiceName;
 		_styles = new(new Dictionary<string, double>(StringComparer.Ordinal));
 		_presets = [];
 	}
@@ -76,7 +77,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 
 		try
 		{
-			await InitOpenJTalkAsync().ConfigureAwait(false);
+			await InitOpenJTalkAsync(_voiceName).ConfigureAwait(false);
 
 			if (parameter is OpenJTalkParameter param)
 			{
@@ -93,14 +94,14 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 			_jtalk.SamplingFrequency = 48000;
 
 			var result = await Task
-				.Run(() => _jtalk.Synthesis(text))
+				.Run(() => _jtalk.Synthesis(text, dumpAll: false))
 				.ConfigureAwait(false);
 			if (result)
 			{
 				var buf = _jtalk.WavBuffer.AsReadOnly();
 
 				// ノイズ部分をカット
-				const int skipSamples = (int)(4800 / 2.0);
+				var skipSamples = (int)(_jtalk.SamplingFrequency / 20.0);
 				var trimmedBuf = buf.Skip(skipSamples).ToArray();
 
 				#pragma warning disable MA0004 // Use Task.ConfigureAwait
@@ -117,54 +118,6 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 						.ConfigureAwait(false);
 				}
 			}
-			/*
-			Console.WriteLine($"from ymm4 path: {filePath}");
-			var sw = System.Diagnostics.Stopwatch.StartNew();
-			await _service
-				.SetCastAsync(SpeakerName)
-				.ConfigureAwait(false);
-			sw.Stop();
-			Console.WriteLine($"set cast time: {sw.Elapsed.TotalSeconds}");
-			sw.Restart();
-			if(parameter is OpenJTalkParameter vstParam)
-			{
-				await _service.SetGlobalParamsAsync(
-					new Dictionary<string,double>(StringComparer.Ordinal)
-					{
-						{nameof(vstParam.Speed), vstParam.Speed},
-						{nameof(vstParam.Volume), vstParam.Volume},
-						{nameof(vstParam.Pitch), vstParam.Pitch},
-						{nameof(vstParam.Alpha), vstParam.Alpha},
-						{"Into.", vstParam.Intonation},
-						{"Hus.", vstParam.Husky},
-					}
-				).ConfigureAwait(false);
-
-				await _service.SetStylesAsync(
-					SpeakerName,
-					vstParam.ItemsCollection
-						.ToDictionary(
-							x => x.DisplayName,
-							x => x.Value,
-							StringComparer.Ordinal)
-				).ConfigureAwait(false);
-			}
-			sw.Stop();
-			sw.Restart();
-			var result = await _service
-				.OutputWaveToFileAsync(text, filePath)
-				.ConfigureAwait(false);
-			Console.WriteLine($"output time: {sw.Elapsed.TotalSeconds}");
-			if(!result){
-				await Console.Error
-					.WriteLineAsync($"ERROR! {nameof(CreateVoiceAsync)} : {text}")
-					.ConfigureAwait(false);
-				await UIThread.InvokeAsync(()=>{
-					TaskbarUtil.ShowError();
-					return ValueTask.CompletedTask;
-				}).ConfigureAwait(false);
-			}
-			*/
 		}
 		catch (Exception ex)
 		{
@@ -239,7 +192,9 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 	/// initialize openjtalk
 	/// </summary>
 	/// <seealso cref="DisposeOpenJTalkAsync"/>
-	static async ValueTask InitOpenJTalkAsync()
+	static async ValueTask InitOpenJTalkAsync(
+		string voiceId = ""
+	)
 	{
 		var dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
 		var dic = Path.Combine(
@@ -248,12 +203,13 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 			"open_jtalk_dic_utf_8-1.11/"
 		);
 
+		var style = OpenJTalkCastManager.GetCastData(voiceId);	//TODO:
 		var voice = Path.Combine(
 			dir,
 			"lib",
 			"voices",
-			"tohoku-f01",
-			"tohoku-f01-neutral.htsvoice"
+			$"{style.Id}",
+			$"{style.StylePaths.First().Value}"
 		);
 
 		var userdic = Path.Combine(

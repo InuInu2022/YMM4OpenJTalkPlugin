@@ -1,0 +1,29 @@
+{
+    "OpenJTalkResources":[
+        {
+            "Name": "tohoku-f01",
+            "Id": "tohoku-f01",
+            "Terms": "https://github.com/icn-lab/htsvoice-tohoku-f01/blob/master/COPYRIGHT.txt",
+            "FileSize": "",
+            "Author": "Intelligent Communication Network (Ito-Nose) Laboratory, Tohoku University",
+            "ContentId": "",
+            "StylePaths": {
+                "neutral" : "tohoku-f01-neutral.htsvoice",
+                "happy" : "tohoku-f01-happy.htsvoice",
+                "angry" : "tohoku-f01-angry.htsvoice",
+                "sad" : "tohoku-f01-sad.htsvoice"
+            }
+        },
+        {
+            "Name": "男性：M001",
+            "Id": "nitech_jp_atr503_m001",
+            "Terms": "https://open-jtalk.sourceforge.net/",
+            "FileSize": "",
+            "Author": "HTS Working Group",
+            "ContentId": "",
+            "StylePaths": {
+                "normal": "nitech_jp_atr503_m001.htsvoice"
+            }
+        }
+    ]
+}

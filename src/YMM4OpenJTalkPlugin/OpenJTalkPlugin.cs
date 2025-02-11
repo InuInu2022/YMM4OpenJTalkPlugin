@@ -21,7 +21,7 @@ public class OpenJTalkPlugin : IVoicePlugin
 		=> OpenJTalkSettings
 			.Default
 			.Speakers
-			.Select(v => new OpenJTalkSpeaker(v, v));
+			.Select((v,i) => new OpenJTalkSpeaker(v));
 	public bool CanUpdateVoices { get; } = true;
 	public bool IsVoicesCached
 		=> OpenJTalkSettings.Default.IsCached;

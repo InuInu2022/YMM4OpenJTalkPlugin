@@ -76,27 +76,12 @@ public partial class OpenJTalkSettings : SettingsBase<OpenJTalkSettings>
 			return ValueTask.CompletedTask;
 		}).ConfigureAwait(false);
 
-		//TODO:json
-		Speakers = [
-			"tohoku-f01",
-			"nitech-jp-atr503-m001",
-		];
-		SpeakersStyles = new(StringComparer.Ordinal)
-		{
-			{
-				"tohoku-f01",
-				new(StringComparer.Ordinal){
-					{"neutral", 1.0},
-					{"happy", 0.0},
-					{"angry", 0.0},
-					{"sad", 0.0},
-				}
-			},
-			{
-				"nitech-jp-atr503-m001",
-				new(StringComparer.Ordinal){}
-			},
-		};
+		await OpenJTalkCastManager
+			.InitAsync()
+			.ConfigureAwait(false);
+
+		Speakers = [.. OpenJTalkCastManager.GetCastNames()];
+		SpeakersStyles = OpenJTalkCastManager.GetCastStyles();
 
 		await UIThread.InvokeAsync(() =>
 		{
