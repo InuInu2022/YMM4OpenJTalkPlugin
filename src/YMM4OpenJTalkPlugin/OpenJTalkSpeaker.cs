@@ -1,7 +1,9 @@
 
+using System.Buffers;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Runtime.InteropServices;
 
 using Epoxy;
 
@@ -21,7 +23,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 	public string SpeakerName { get; init; }
 	public string API => "OpenJTalk";
 	public string ID { get; init; }
-	public bool IsVoiceDataCachingRequired => false;
+	public bool IsVoiceDataCachingRequired => true;
 	public SupportedTextFormat Format => SupportedTextFormat.Text;
 	public IVoiceLicense? License { get; init; }
 	public IVoiceResource? Resource { get; init; }
@@ -36,7 +38,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 	readonly string _voiceName;
 	static readonly OpenJTalkAPI _jtalk = new();
 	ReadOnlyDictionary<string, double> _styles;
-	IReadOnlyList<string> _presets;
+	//IReadOnlyList<string> _presets;
 
 	public OpenJTalkSpeaker(string voiceName)
 	{
@@ -51,7 +53,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 		);
 		_voiceName = voiceName;
 		_styles = new(new Dictionary<string, double>(StringComparer.Ordinal));
-		_presets = [];
+		//_presets = [];
 	}
 
 	public async Task<string> ConvertKanjiToYomiAsync(string text, IVoiceParameter voiceParameter)
@@ -98,11 +100,20 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 				.ConfigureAwait(false);
 			if (result)
 			{
-				var buf = _jtalk.WavBuffer.AsReadOnly();
+				ReadOnlySpan<byte> buf = _jtalk.WavBuffer.ToArray();
 
-				// ノイズ部分をカット
+				// ノイズ部分を無音化
 				var skipSamples = (int)(_jtalk.SamplingFrequency / 20.0);
-				var trimmedBuf = buf.Skip(skipSamples).ToArray();
+				Span<byte> silence = skipSamples < 1024
+					? stackalloc byte[skipSamples]
+					: new byte[skipSamples];
+				silence.Clear();
+
+				ReadOnlySpan<byte> modifiedBuf = [.. silence, .. buf[skipSamples..]];
+
+				byte[] rent = ArrayPool<byte>.Shared.Rent(modifiedBuf.Length);
+				modifiedBuf.CopyTo(rent);
+				ReadOnlyMemory<byte> readOnlyMemory = rent.AsMemory();
 
 				#pragma warning disable MA0004 // Use Task.ConfigureAwait
 				await using var waveFileWriter = new WaveFileWriter(
@@ -113,10 +124,11 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 				await using (waveFileWriter.ConfigureAwait(false))
 				{
 					await waveFileWriter
-						.WriteAsync(
-							trimmedBuf)
+						.WriteAsync(readOnlyMemory)
 						.ConfigureAwait(false);
 				}
+
+				ArrayPool<byte>.Shared.Return(rent, clearArray: true);
 			}
 		}
 		catch (Exception ex)
