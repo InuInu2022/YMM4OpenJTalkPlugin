@@ -1,51 +1,101 @@
-# ymme-vscode-boilerplate
+# YMM4 Open JTalk プラグイン
 
-YMM4 plugin boilerplate template repository
+## これはなに？
 
-- githubのtemplate repositoryで使えるリポジトリです。
- 	- [テンプレートリポジトリを作成する - GitHub Docs](https://docs.github.com/ja/repositories/creating-and-managing-repositories/creating-a-template-repository)
-- VSCode用ですが、タスクやデバッガの設定以外はVSやRiderなどでも使えます
+YMM4のボイスとして **「[Open JTalk](https://open-jtalk.sp.nitech.ac.jp/)」(オープンジェイトーク)** を使えるようにしたプラグインです。
 
-## このテンプレートでできること
+「[SHABERU](http://akihiro0105.web.fc2.com/Downloads/Downloads-SHABERU.html)」のボイスも追加して利用することができます。
 
-### 設定済み
+不具合を見つけたら、YMM4本体ではなく[github issues](https://github.com/InuInu2022/YMM4OpenJTalkPlugin/issues)などで報告してください！
 
-- `src/Sample`以下に何もしないサンプルプラグインが設定済みです
-  - これをもとにしても、公式のサンプルを元にしてもOK
-  - ソリューションファイル：`Sample.sln`も設定済みです
-- `dotnet publish`コマンドでymmeファイルを`publish`以下に作成＆YMM4のプラグインフォルダ以下に展開できます
-- Code Analyzerを色々有効にしています
-- ビルド時に `LICENSE` や `README.md` がdllやymmeに含まれるように設定済
-- `licenses`フォルダ以下のファイルもdllやymmeに含まれるように
-- [MinVer](https://github.com/adamralph/minver)ライブラリでgitのタグから自動でSemVerが付きます
-  - 出力されるymmeファイル名にバージョン番号を含むようになりました `YourPluginName.v.0.x.x.ymme`
-  - 展開すると内部にバージョン番号を含まない`YourPluginName`ができるためバージョンアップ時も問題ありません
-- VSCode: VSCodeの`publish`タスクでも上記ができるようにしています
-- VSCode: プラグインをYMM4ごとデバッガ接続で起動することができます
-- gitignore, editorconfig設定済み
-
-### 設定が必要なこと
-
-- **環境変数：`YMM4_PATH`に「開発用YMM4」の置いてあるフォルダへのパスを通してください**
-  - ※普段使い用YMM4とは別にするのをオススメ
-- `LICENSE`：MITライセンスになっているのでお好きなライセンスに書き換えて下さい
-- nuget以外のライブラリ：`lib`以下において参照してください
-- ドキュメント: `docs`フォルダを用意しています
-- ユニットテスト: `tests`フォルダだけ用意しています
-  - お好きなテストフレームワークをお使いください
-
-### バージョン
+### 対応バージョン
 
 - YMM v4.35.xx 以降
-- ※YMM v4.34.xx 以前は [tags](https://github.com/InuInu2022/ymme-vscode-boilerplate/releases/tag/v4.34) から旧バージョンを利用することができます
 
-## Reference
+## 使い方
 
-YMM4のプラグイン開発は以下を参照してください。
+1. プラグインをインストールする
+2. （初回）キャラクター設定で「YMM4 Open JTalk プラグインの声質を再読み込み」
+3. キャラクターを作る
+4. 作ったキャラクターを選んだ状態でセリフを入力する
 
-- [プラグインを作成する | 饅頭遣いのおもちゃ箱](https://manjubox.net/ymm4/faq/plugin/how_to_make/)
-- [manju-summoner/YukkuriMovieMaker4PluginSamples: YMM4用プラグインのサンプル集です](https://github.com/manju-summoner/YukkuriMovieMaker4PluginSamples)
-- [manju-summoner/YukkuriMovieMaker.Plugin.Community: YMM4コミュニティで開発するYMM4プラグインです。 プラグインのサンプルも兼ねています。 ここで開発されたプラグインはYMM4にデフォルトで組み込まれます。](https://github.com/manju-summoner/YukkuriMovieMaker.Plugin.Community)
-- [manju-summoner/SampleReversePlaybackAudioEffectPlugin: キャッシュ機構を備えたYMM4音声エフェクトの実装サンプルです。音声の逆再生機能を提供します。ただし、仮実装のため実用には適しません。](https://github.com/manju-summoner/SampleReversePlaybackAudioEffectPlugin)
-- [manju-summoner/YukkuriMovieMaker.Generator](https://github.com/manju-summoner/YukkuriMovieMaker.Generator)
-- [YMM4 API Documentation](https://ymm-api.pages.dev/#ymm4)
+### インストール方法
+
+[Releases](https://github.com/InuInu2022/YMM4OpenJTalkPlugin/releases) 以下にある最新のバージョンの`YMM4OpenJTalkPlugin.v.***.ymme`をインストールしてください。
+
+`ymme`ファイルをダブルクリックするとインストールが始まります。
+
+インストール後、「キャラクター設定」の「ボイス」で、「YMM4 Open JTalk プラグインの声質を再読み込み」を選択して、現在のボイスライブラリ（音響モデル）を取得してください。
+※新しくボイスライブラリ（音響モデル）を増やすたびに必要です
+
+<!--
+### ニコニコモンズ
+
+ニコニコに投稿する際には以下のコンテンツIDを親子登録してください。
+
+[*****](https://commons.nicovideo.jp/works/)
+
+(YMM4の素材一覧からも確認できます。)
+-->
+
+### プラグインの更新
+
+プラグインの設定画面から更新確認とダウンロードができます。
+`ymme`ファイルをダブルクリックするとインストールが始まります。
+
+### デフォルトで使えるボイスライブラリ（音響モデル）
+
+以下のボイスが初期インストールされています。
+
+- 女声: tohoku-f01
+- 男性: m001
+- 女声: メイ
+- 男性: タクミ
+
+>! 注意
+> v0.1ではスタイル（感情）の合成には対応していません
+
+### ボイスライブラリ（音響モデル）を追加する場合
+
+1. プラグインのインストール先フォルダの`voices`以下にデータを置く
+2. `voices.json`を書き換える
+3. 「YMM4 Open JTalk プラグインの声質を再読み込み」をして指定
+
+#### `voices.json` 参考
+
+```json:voices.json
+{
+    "Name": "女声: tohoku-f01",
+    "Id": "tohoku-f01",
+    "Terms": "https://github.com/icn-lab/htsvoice-tohoku-f01/blob/master/COPYRIGHT.txt",
+    "FileSize": "",
+    "Author": "東北大学 伊藤・能勢研究室(ICN Lab.)",
+    "ContentId": "",
+    "StylePaths": {
+        "neutral" : "tohoku-f01-neutral.htsvoice",
+        "happy" : "tohoku-f01-happy.htsvoice",
+        "angry" : "tohoku-f01-angry.htsvoice",
+        "sad" : "tohoku-f01-sad.htsvoice"
+    }
+},
+```
+
+- `"Id"`は`voices`以下のデータを置いたフォルダ名と一致させてください
+
+#### ボイスライブラリ（音響モデル）
+
+`htsvoice`形式の音響モデルがボイスライブラリとして利用できます。
+
+- [なんかいろいろしてみます ダウンロード](http://akihiro0105.web.fc2.com/Downloads/Downloads-htsvoice.html)
+- [音響モデルを配布していこうと思います（htsvoice） : kukulu合成音声（htsvoice)配付場所](https://ragolun.exblog.jp/22985257/)
+- [【まほろば】Open JTalk の音響モデルを試す](https://petile.sakura.ne.jp/mahoroba/e1875.html)
+
+## License
+
+```
+MIT License
+
+Copyright (c) 2024 InuInu
+```
+
+- [Licenses](./licenses/)
