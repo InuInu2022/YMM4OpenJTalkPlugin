@@ -119,6 +119,6 @@
 
     <Message Text="Zip package created at: $(ZipDestination)" Importance="high" />
 
-    <Unzip SourceFiles="$(OutputPath)/../../../../../publish/$(ZipFileName)" DestinationFolder="$(YMM4_PATH)\user\plugin\$(AssemblyName)\" />
+    <Unzip SourceFiles="$(OutputPath)/../../../../../../publish/$(ZipFileName)" DestinationFolder="$(YMM4_PATH)\user\plugin\$(AssemblyName)\" />
   </Target>
 </Project>
