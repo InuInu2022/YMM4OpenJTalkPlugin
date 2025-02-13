@@ -10,7 +10,7 @@ namespace YMM4OpenJTalkPlugin;
 /// <summary>
 /// OpenJTalkをYMM4上で直接使うためのプラグイン
 /// </summary>
-[PluginDetails(AuthorName = "InuInu", ContentId = "")]
+[PluginDetails(AuthorName = "InuInu", ContentId = "nc401437")]
 public class OpenJTalkPlugin : IVoicePlugin, IDisposable
 {
 	private bool _disposedValue;
