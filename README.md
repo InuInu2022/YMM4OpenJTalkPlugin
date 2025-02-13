@@ -19,6 +19,27 @@ YMM4のボイスとして **「[Open JTalk](https://open-jtalk.sp.nitech.ac.jp/)
 3. キャラクターを作る
 4. 作ったキャラクターを選んだ状態でセリフを入力する
 
+## パラメータ
+
+セリフ毎に設定できる次のパラメータがあります。
+
+- 話速 (speed)
+- 大きさ (volume)
+- 高さ (pitch)
+- 声質詳細 (alpha）
+- 抑揚 (gvWeightLF0)
+
+また詳細パラメータもありますが、基本的に触らなくてOKです。
+
+- 無声音閾値 (msdThreshold)
+- 遷移平滑度（beta）
+- スペクトル変動重み (gvWeightSpectrum)
+
+## 感情(スタイル)
+
+- v0.1では数値が一番大きいスタイルが選ばれます。感情合成はできません。
+- スタイルが１種類のボイスはパラメータを弄っても変化ありません
+
 ### インストール方法
 
 [Releases](https://github.com/InuInu2022/YMM4OpenJTalkPlugin/releases) 以下にある最新のバージョンの`YMM4OpenJTalkPlugin.v.***.ymme`をインストールしてください。
