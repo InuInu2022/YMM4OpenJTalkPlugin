@@ -76,6 +76,31 @@ YMM4のボイスとして **「[Open JTalk](https://open-jtalk.sp.nitech.ac.jp/)
 >! 注意
 > v0.1ではスタイル（感情）の合成には対応していません
 
+```
+------------------------------------------
+HTS Voice "Mei", released by MMDAgent Project Team
+Copyright (c) 2009-2018  Nagoya Institute of Technology Department of Computer Science
+
+This work is licensed under the Creative Commons Attribution 3.0 license.
+------------------------------------------
+HTS Voice "Takumi", released by MMDAgent Project Team
+Copyright (c) 2017-2018  Nagoya Institute of Technology Department of Computer Science
+
+This work is licensed under the Creative Commons Attribution 3.0 license.
+------------------------------------------
+HTS voice tohoku-f01-{angry,happy,neutral,sad}
+Copyright(c) 2015 Intelligent Communication Network (Ito-Nose) Laboratory
+                  Tohoku University.
+This work is licensed under the Creative Commons Attribution 4.0 license (CC-BY 4.0)
+------------------------------------------
+The Nitech Japanese Speech Database "NIT ATR503 M001", released by HTS Working Group
+Copyright (c) 2003-2012  Nagoya Institute of Technology
+Department of Computer Science
+
+This work is licensed under the Creative Commons Attribution 3.0 license.
+--------------------------------------------
+```
+
 ### ボイスライブラリ（音響モデル）を追加する場合
 
 1. プラグインのインストール先フォルダの`voices`以下にデータを置く
