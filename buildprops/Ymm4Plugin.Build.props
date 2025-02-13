@@ -95,10 +95,12 @@
       <FilesToDelete Include="$(OutputPath)\publish\ExtendedNumerics.BigDecimal.dll" />
       <FilesToDelete Include="$(OutputPath)\publish\SharpGen.*.dll" />
       <FilesToDelete Include="$(OutputPath)\publish\System.*.dll" />
+      <FilesToDelete Include="$(OutputPath)\publish\NAudio.*.dll" />
       <FilesToDelete Include="$(OutputPath)\publish\ICSharpCode.AvalonEdit.dll" />
       <FilesToDelete Include="$(OutputPath)\publish\runtimes\win\lib\**\System.Management.dll" />
       <FilesToDelete Include="$(OutputPath)\publish\YukkuriMovieMaker.*.dll" />
       <FilesToDelete Include="$(OutputPath)\publish\YukkuriMovieMaker.*.pdb" />
+      <FilesToDelete Include="$(OutputPath)\publish\$(AssemblyName).pdb" />
     </ItemGroup>
     <Delete Files="@(FilesToDelete)">
       <Output TaskParameter="DeletedFiles" ItemName="FilesDeleted" />
