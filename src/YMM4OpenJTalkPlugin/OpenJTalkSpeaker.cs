@@ -135,7 +135,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker, IDisposable
 						.ConfigureAwait(false);
 				}
 
-				ArrayPool<byte>.Shared.Return(rent);
+				ArrayPool<byte>.Shared.Return(rent, true);
 			}
 		}
 		catch (Exception ex)
