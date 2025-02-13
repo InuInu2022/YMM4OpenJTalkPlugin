@@ -78,7 +78,7 @@
     <MakeDir Directories="$(OutputPath)/../../../../../publish/" />
     <PropertyGroup>
       <ZipFileName>$(AssemblyName).v.$(Version).ymme</ZipFileName>
-      <ZipDestination>$(OutputPath)/../../../../../publish/$(ZipFileName)</ZipDestination>
+      <ZipDestination>$(OutputPath)/../../../../../../publish/$(ZipFileName)</ZipDestination>
       <PackageFolder>$(OutputPath)/ymme/$(AssemblyName)</PackageFolder>
       <ZipSource>$(OutputPath)/ymme</ZipSource>
     </PropertyGroup>
