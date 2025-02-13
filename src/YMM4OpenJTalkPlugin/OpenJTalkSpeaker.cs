@@ -17,7 +17,7 @@ using YukkuriMovieMaker.Plugin.Voice;
 
 namespace YMM4OpenJTalkPlugin;
 
-public class OpenJTalkSpeaker : IVoiceSpeaker
+public class OpenJTalkSpeaker : IVoiceSpeaker, IDisposable
 {
 	public string EngineName => "OpenJTalk";
 	public string SpeakerName { get; init; }
@@ -38,6 +38,8 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 	readonly string _voiceName;
 	static readonly OpenJTalkAPI _jtalk = new();
 	ReadOnlyDictionary<string, double> _styles;
+	private bool _disposedValue;
+
 	//IReadOnlyList<string> _presets;
 
 	public OpenJTalkSpeaker(string voiceName)
@@ -79,7 +81,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 
 		try
 		{
-			await InitOpenJTalkAsync(_voiceName).ConfigureAwait(false);
+			await InitOpenJTalkAsync(_voiceName, parameter).ConfigureAwait(false);
 
 			if (parameter is OpenJTalkParameter param)
 			{
@@ -120,11 +122,11 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 					ArrayPool<byte>.Shared.Return([.. silence]);
 				}
 
-				#pragma warning disable MA0004 // Use Task.ConfigureAwait
+#pragma warning disable MA0004 // Use Task.ConfigureAwait
 				await using var waveFileWriter = new WaveFileWriter(
 					filePath,
 					new WaveFormat(48000, 16, 1));
-				#pragma warning restore MA0004 // Use Task.ConfigureAwait
+#pragma warning restore MA0004 // Use Task.ConfigureAwait
 
 				await using (waveFileWriter.ConfigureAwait(false))
 				{
@@ -208,9 +210,9 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 	/// <summary>
 	/// initialize openjtalk
 	/// </summary>
-	/// <seealso cref="DisposeOpenJTalkAsync"/>
 	static async ValueTask InitOpenJTalkAsync(
-		string voiceId = ""
+		string voiceId = "",
+		IVoiceParameter? parameter = null
 	)
 	{
 		var dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
@@ -220,13 +222,29 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 			"open_jtalk_dic_utf_8-1.11/"
 		);
 
-		var style = OpenJTalkCastManager.GetCastData(voiceId);	//TODO:
+		var style = OpenJTalkCastManager.GetCastData(voiceId);  //TODO:
+		var stylePath = "";
+		if (parameter is OpenJTalkParameter param)
+		{
+			//TODO: 感情合成サポート
+			//とりいそぎ一番値が大きいものを選択
+			var index = param.ItemsCollection
+				.Select((v, i) => (Index: i, v.Value))
+				.OrderByDescending(x => x.Value)
+				.First()
+				.Index;
+			stylePath = style.StylePaths.ElementAt(index).Value;
+		}
+		else
+		{
+			stylePath = style.StylePaths.First().Value;
+		}
 		var voice = Path.Combine(
 			dir,
 			"lib",
 			"voices",
 			$"{style.Id}",
-			$"{style.StylePaths.First().Value}"
+			$"{stylePath}"
 		);
 
 		var userdic = Path.Combine(
@@ -240,8 +258,29 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 			.ConfigureAwait(false);
 	}
 
-	static async ValueTask DisposeOpenJTalkAsync()
+	protected virtual void Dispose(bool disposing)
 	{
-		await Task.Run(_jtalk.Dispose).ConfigureAwait(false);
+		if (!_disposedValue)
+		{
+			if (disposing)
+			{
+
+			}
+			_jtalk.Dispose();
+			_disposedValue = true;
+		}
+	}
+
+	~OpenJTalkSpeaker()
+	{
+	     // このコードを変更しないでください。クリーンアップ コードを 'Dispose(bool disposing)' メソッドに記述します
+	    Dispose(disposing: false);
+	}
+
+	public void Dispose()
+	{
+		// このコードを変更しないでください。クリーンアップ コードを 'Dispose(bool disposing)' メソッドに記述します
+		Dispose(disposing: true);
+		GC.SuppressFinalize(this);
 	}
 }
