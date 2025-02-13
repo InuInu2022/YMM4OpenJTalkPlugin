@@ -222,7 +222,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker, IDisposable
 			"open_jtalk_dic_utf_8-1.11/"
 		);
 
-		var style = OpenJTalkCastManager.GetCastData(voiceId);  //TODO:
+		var style = OpenJTalkCastManager.GetCastData(voiceId);
 		var stylePath = "";
 		if (parameter is OpenJTalkParameter param)
 		{
