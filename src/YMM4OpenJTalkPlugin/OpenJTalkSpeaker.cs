@@ -100,20 +100,25 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 				.ConfigureAwait(false);
 			if (result)
 			{
-				ReadOnlySpan<byte> buf = _jtalk.WavBuffer.ToArray();
+				ReadOnlySpan<byte> buf = [.. _jtalk.WavBuffer];
 
 				// ノイズ部分を無音化
 				var skipSamples = (int)(_jtalk.SamplingFrequency / 20.0);
 				Span<byte> silence = skipSamples < 1024
 					? stackalloc byte[skipSamples]
-					: new byte[skipSamples];
+					: ArrayPool<byte>.Shared.Rent(skipSamples);
 				silence.Clear();
 
 				ReadOnlySpan<byte> modifiedBuf = [.. silence, .. buf[skipSamples..]];
 
-				byte[] rent = ArrayPool<byte>.Shared.Rent(modifiedBuf.Length);
+				var rent = ArrayPool<byte>.Shared.Rent(modifiedBuf.Length);
 				modifiedBuf.CopyTo(rent);
 				ReadOnlyMemory<byte> readOnlyMemory = rent.AsMemory();
+
+				if (skipSamples >= 1024)
+				{
+					ArrayPool<byte>.Shared.Return([.. silence]);
+				}
 
 				#pragma warning disable MA0004 // Use Task.ConfigureAwait
 				await using var waveFileWriter = new WaveFileWriter(
@@ -128,7 +133,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 						.ConfigureAwait(false);
 				}
 
-				ArrayPool<byte>.Shared.Return(rent, clearArray: true);
+				ArrayPool<byte>.Shared.Return(rent);
 			}
 		}
 		catch (Exception ex)
