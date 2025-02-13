@@ -1,11 +1,11 @@
 {
     "OpenJTalkResources":[
         {
-            "Name": "tohoku-f01",
+            "Name": "女声: tohoku-f01",
             "Id": "tohoku-f01",
             "Terms": "https://github.com/icn-lab/htsvoice-tohoku-f01/blob/master/COPYRIGHT.txt",
             "FileSize": "",
-            "Author": "Intelligent Communication Network (Ito-Nose) Laboratory, Tohoku University",
+            "Author": "東北大学 伊藤・能勢研究室(ICN Lab.)",
             "ContentId": "",
             "StylePaths": {
                 "neutral" : "tohoku-f01-neutral.htsvoice",
@@ -15,23 +15,23 @@
             }
         },
         {
-            "Name": "男性：M001",
+            "Name": "男声: M001",
             "Id": "nitech_jp_atr503_m001",
             "Terms": "https://open-jtalk.sourceforge.net/",
             "FileSize": "",
-            "Author": "HTS Working Group, Dept. of Computer Science, Nagoya Institute of Technology",
+            "Author": "HTS Working Group",
             "ContentId": "",
             "StylePaths": {
                 "normal": "nitech_jp_atr503_m001.htsvoice"
             }
         },
         {
-            "Name": "メイ",
+            "Name": "女性: メイ",
             "Id": "mei",
             "Terms": "https://www.mmdagent.jp/",
             "FileSize": "",
-            "Author": "MMDAgent Project Team, Dept. of Computer Science, Nagoya Institute of Technology",
-            "ContentId": "",
+            "Author": "MMDAgent Project Team",
+            "ContentId": "sm14317331",
             "StylePaths": {
                 "normal": "mei_normal.htsvoice",
                 "angry": "mei_angry.htsvoice",
@@ -41,12 +41,12 @@
             }
         },
         {
-            "Name": "タクミ",
+            "Name": "男声: タクミ",
             "Id": "takumi",
             "Terms": "https://www.mmdagent.jp/",
             "FileSize": "",
-            "Author": "MMDAgent Project Team, Dept. of Computer Science, Nagoya Institute of Technology",
-            "ContentId": "",
+            "Author": "MMDAgent Project Team",
+            "ContentId": "sm14317331",
             "StylePaths": {
                 "normal": "takumi_normal.htsvoice",
                 "angry": "takumi_angry.htsvoice",
