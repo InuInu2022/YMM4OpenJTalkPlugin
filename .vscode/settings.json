@@ -2,7 +2,7 @@
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "#006432",
         "titleBar.activeForeground": "#fcfcfc",
-        "activityBar.background": "#000000",
+        "activityBar.background": "#adacac",
         "activityBar.foreground": "#006432",
 
         //outline icons color
