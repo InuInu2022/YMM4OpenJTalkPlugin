@@ -1,5 +1,7 @@
 # YMM4 Open JTalk プラグイン
 
+![cover](https://github.com/InuInu2022/YMM4OpenJTalkPlugin/blob/main/docs/thumb.png?raw=true)
+
 ## これはなに？
 
 YMM4のボイスとして **「[Open JTalk](https://open-jtalk.sp.nitech.ac.jp/)」(オープンジェイトーク)** を使えるようにしたプラグインです。
