@@ -23,7 +23,7 @@ public class OpenJTalkSpeaker : IVoiceSpeaker
 	public string SpeakerName { get; init; }
 	public string API => "OpenJTalk";
 	public string ID { get; init; }
-	public bool IsVoiceDataCachingRequired => true;
+	public bool IsVoiceDataCachingRequired => false;
 	public SupportedTextFormat Format => SupportedTextFormat.Text;
 	public IVoiceLicense? License { get; init; }
 	public IVoiceResource? Resource { get; init; }

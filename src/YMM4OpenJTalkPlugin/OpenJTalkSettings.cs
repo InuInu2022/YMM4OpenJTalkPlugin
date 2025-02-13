@@ -47,23 +47,31 @@ public partial class OpenJTalkSettings : SettingsBase<OpenJTalkSettings>
 		set { Set(ref _speakersStyles, value); }
 	}
 
+	/*
 	[SuppressMessage("Design", "MA0016")]
 	public Dictionary<string, IList<string>> SpeakersPresets
 	{
 		get { return _speakersPresets; }
 		set { Set(ref _speakersPresets, value); }
 	}
+	*/
 
-	//ITalkAutoService? _service;
+	[SuppressMessage("Design", "MA0016")]
+	public Dictionary<string, OpenJTalkResource> CastData
+	{
+		get { return _castData; }
+		set { Set(ref _castData, value); }
+	}
+
 	bool _isCached;
 	string[] _speakers = [];
 	Dictionary<string, Dictionary<string, double>> _speakersStyles = new(StringComparer.Ordinal);
-	Dictionary<string, IList<string>> _speakersPresets = new(StringComparer.Ordinal);
+	//Dictionary<string, IList<string>> _speakersPresets = new(StringComparer.Ordinal);
+	Dictionary<string, OpenJTalkResource> _castData = [];
 
 	public override void Initialize()
 	{
-		//var provider = new TalkServiceProvider();
-		//_service = provider.GetService<ITalkAutoService>();
+
 	}
 
 	/// <summary>
@@ -80,8 +88,9 @@ public partial class OpenJTalkSettings : SettingsBase<OpenJTalkSettings>
 			.InitAsync()
 			.ConfigureAwait(false);
 
-		Speakers = [.. OpenJTalkCastManager.GetCastNames()];
+		Speakers = OpenJTalkCastManager.GetCastNames().ToArray();
 		SpeakersStyles = OpenJTalkCastManager.GetCastStyles();
+		IsCached = true;
 
 		await UIThread.InvokeAsync(() =>
 		{
@@ -89,10 +98,6 @@ public partial class OpenJTalkSettings : SettingsBase<OpenJTalkSettings>
 			TaskbarUtil.ShowNormal();
 			return ValueTask.CompletedTask;
 		}).ConfigureAwait(false);
-
-
-
-		IsCached = true;
 
 		await UIThread.InvokeAsync(()=>{
 			TaskbarUtil.FinishIndeterminate();

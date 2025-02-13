@@ -7,7 +7,10 @@ namespace YMM4OpenJTalkPlugin;
 
 public static class OpenJTalkCastManager
 {
-	static Dictionary<string, OpenJTalkResource> castData = [];
+	static Dictionary<string, OpenJTalkResource> CastData {
+		get => OpenJTalkSettings.Default.CastData;
+		set => OpenJTalkSettings.Default.CastData = value;
+	}
 
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "MA0004:Use Task.ConfigureAwait", Justification = "<保留中>")]
 	internal static async ValueTask InitAsync()
@@ -23,7 +26,7 @@ public static class OpenJTalkCastManager
 			.DeserializeAsync<PluginResources>(openStream)
 			.ConfigureAwait(false);
 		if (result is null) { return; }
-		castData = result
+		CastData = result
 			.OpenJTalkResources?
 			.Select(v => new KeyValuePair<string, OpenJTalkResource>(v.Name, v))
 			.ToDictionary()
@@ -32,25 +35,25 @@ public static class OpenJTalkCastManager
 
 	internal static IReadOnlyCollection<string> GetCastNames()
 	{
-		return [.. castData.Select(v => v.Value.Name)];
+		return [.. CastData.Select(v => v.Value.Name)];
 	}
 
 	internal static OpenJTalkResource GetCastData(string castName)
 	{
-		var result = castData.TryGetValue(castName, out var data);
+		var result = CastData.TryGetValue(castName, out var data);
 		return !result || data is null
 			? new OpenJTalkResource("", "", new Dictionary<string, string>(StringComparer.Ordinal))
 			: data;
 	}
 	internal static OpenJTalkResource GetCastData(int index)
 	{
-		var result = castData.ElementAtOrDefault(index).Value;
+		var result = CastData.ElementAtOrDefault(index).Value;
 		return result;
 	}
 
 	internal static Dictionary<string, Dictionary<string, double>> GetCastStyles()
 	{
-		return castData
+		return CastData
 			.Select(static v => new KeyValuePair<string, Dictionary<string, double>>(
 				v.Value.Name,
 				ToStyleWeights(v)
